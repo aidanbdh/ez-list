@@ -22589,6 +22589,11 @@ function symbolObservablePonyfill(root) {
 	return result;
 };
 },{}],215:[function(require,module,exports){
+const init = { text: 'Hello World!' };
+
+module.exports = init;
+
+},{}],216:[function(require,module,exports){
 const React = require('react');
 const Hello = require('./hello.js');
 
@@ -22600,9 +22605,9 @@ const App = () => React.createElement(
 
 module.exports = App;
 
-},{"./hello.js":216,"react":204}],216:[function(require,module,exports){
+},{"./hello.js":217,"react":204}],217:[function(require,module,exports){
 const React = require('react');
-const connect = require('react-redux');
+const { connect } = require('react-redux');
 
 const helloWorld = ({ text }) => React.createElement(
   'h1',
@@ -22610,11 +22615,11 @@ const helloWorld = ({ text }) => React.createElement(
   text
 );
 
-const mapStateToProps = ({ text }) => text;
+const mapStateToProps = ({ switchView }) => ({ text: switchView.text });
 
 module.exports = connect(mapStateToProps)(helloWorld);
 
-},{"react":204,"react-redux":174}],217:[function(require,module,exports){
+},{"react":204,"react-redux":174}],218:[function(require,module,exports){
 const React = require('react');
 const { render } = require('react-dom');
 const { Provider } = require('react-redux');
@@ -22627,13 +22632,26 @@ render(React.createElement(
   React.createElement(App, null)
 ), document.getElementById('app'));
 
-},{"./display/app":215,"./store.js":218,"react":204,"react-dom":38,"react-redux":174}],218:[function(require,module,exports){
-const { createStore, combineReducers } = require('redux');
+},{"./display/app":216,"./store.js":220,"react":204,"react-dom":38,"react-redux":174}],219:[function(require,module,exports){
+const init = require('../actions/init.js');
 
-const reducers = combineReducers();
+const switchView = (state = init, action) => {
+  switch (action.type) {
+    default:
+      return state;
+  }
+};
+
+module.exports = switchView;
+
+},{"../actions/init.js":215}],220:[function(require,module,exports){
+const { createStore, combineReducers } = require('redux');
+const switchView = require('./reducers/view.js');
+
+const reducers = combineReducers({ switchView });
 
 const store = createStore(reducers);
 
 module.exports = store;
 
-},{"redux":210}]},{},[217]);
+},{"./reducers/view.js":219,"redux":210}]},{},[218]);
