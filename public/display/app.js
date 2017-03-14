@@ -1,5 +1,5 @@
 const React = require('react')
-const Hello = require('./hello.js')
+const Hello = require('./views/hello.js')
 
 const App = () =>
   <div>
