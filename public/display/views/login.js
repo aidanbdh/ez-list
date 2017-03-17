@@ -3,6 +3,8 @@ const { connect } = require('react-redux')
 const lock = require('../../utils/auth0.js')
 const { login, logout } = require('../../actions/login.js')
 
+console.log(lock)
+
 const Login = (dispatch, { user }) =>
   <div>
     { lock.on('authenticated', res => dispatch(login(res.idToken))) }

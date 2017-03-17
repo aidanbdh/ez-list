@@ -1,6 +1,7 @@
 const lock = require('../utils/auth0.js')
 
-//
+console.log(lock)
+
 const Login = token =>
   dispatch => lock.getProfile(token, (err, profile) => {
     err
@@ -16,7 +17,6 @@ const Login = token =>
       })
   })
 
-//
 const Logout = dispatch =>
   dispatch({
     type: 'updateProfile',
