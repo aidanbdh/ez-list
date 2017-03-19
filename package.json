@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/aidanbdh/ez-list#readme",
   "dependencies": {
-    "auth0-lock": "^10.12.3",
+    "auth0-lock": "^10.13.0",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "knex": "^0.12.7",
