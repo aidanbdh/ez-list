@@ -1,27 +1,37 @@
 const React = require('react')
 const { connect } = require('react-redux')
-const { lock, show } = require('../../utils/auth0.js')
-console.log(lock)
+const { show, authenticated } = require('../../utils/auth0.js')
 const { login, logout } = require('../../actions/login.js')
 
-const Login = ({ login, logout }, { user }) => {
-  lock.on('authenticated', res => login(res.idToken))
-  return <div>
-    {
-     user
-      ? <button onClick={ logout }>Logout</button>
-      : <button onClick={ show }>Login</button>
-    }
+const Login = ({ user, dispatchLogin, dispatchLogout }) => {
+  authenticated(res => dispatchLogin(res.idToken))
+  const display =
+    user
+      ? {
+        name: ` ${user.name || ''}`,
+        button: 'Logout',
+        func: dispatchLogout
+      }
+      : {
+        name: '',
+        button: 'Login',
+        func: show
+      }
+  return <div id='login'>
+    <h3>Hello{ display.name }!</h3>
+    <button onClick={ display.func }>{ display.button }</button>
   </div>
 }
 
 const mapDispatchToProps = dispatch => ({
-  login: id => {
+  dispatchLogin: id => {
     dispatch(login(id))
   },
-  logout: dispatch(logout())
+  dispatchLogout: () => {
+    dispatch(logout())
+  }
 })
 
-const mapStateToProps = ({ user }) => ({ user })
+const mapStateToProps = ({ profile }) => ({ user: profile.user || null })
 
 module.exports = connect(mapStateToProps, mapDispatchToProps)(Login)

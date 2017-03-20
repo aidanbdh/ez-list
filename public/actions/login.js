@@ -2,18 +2,15 @@ const { lock } = require('../utils/auth0.js')
 
 const login = token =>
   dispatch => {
-    console.log('login')
-    lock.getProfile(token, (err, profile) => {
+    lock.getProfile(token, (err, user) => {
       err
         ? dispatch({
           type: 'loginError',
-          user: null,
-          profile: null
+          user: null
         })
         : dispatch({
           type: 'updateProfile',
-          user: token,
-          profile
+          user
         })
     })
   }
@@ -22,8 +19,7 @@ const logout = () =>
   dispatch => {
     dispatch({
       type: 'updateProfile',
-      user: null,
-      profile: null
+      user: null
     })
   }
 
