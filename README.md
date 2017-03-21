@@ -1,4 +1,5 @@
 # ez-list
+A website for grocery shoppers who want to easily make grocery lists.
 
 Technologies:
 - JavaScript(es6)
