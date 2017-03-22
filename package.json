@@ -10,7 +10,8 @@
     "bundle:watch": "watchify -v -t babelify public/index.js -o public/main.js",
     "test": "mocha",
     "test:watch": "mocha -w -R min",
-    "coverage": "nyc --reporter=lcov npm test"
+    "coverage": "nyc --reporter=lcov npm test",
+    "resetdb": "psql -d ezlist-users -f ./database/create-tables.sql"
   },
   "repository": {
     "type": "git",

@@ -12,6 +12,15 @@ const login = token =>
           type: 'updateProfile',
           user
         })
+      if (err) return
+      fetch('/login', {
+        headers: {
+          Accept: 'application/json',
+          'Content-type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify({ token })
+      })
     })
   }
 
