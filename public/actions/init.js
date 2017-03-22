@@ -1,8 +1,6 @@
 const init = {
-  text: 'Hello World!',
   view: 'home',
-  user: null,
-  profile: null
+  user: null
 }
 
 module.exports = init

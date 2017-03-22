@@ -13,6 +13,6 @@ const viewElements = view => {
 
 const App = view => <div>{ viewElements(view) }</div>
 
-const mapStateToProps = ({ view }) => ({ view })
+const mapStateToProps = ({ view }) => ({ view: view.view })
 
 module.exports = connect(mapStateToProps)(App)

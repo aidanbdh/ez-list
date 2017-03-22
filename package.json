@@ -10,7 +10,8 @@
     "bundle:watch": "watchify -v -t babelify public/index.js -o public/main.js",
     "test": "mocha",
     "test:watch": "mocha -w -R min",
-    "coverage": "nyc --reporter=lcov npm test"
+    "coverage": "nyc --reporter=lcov npm test",
+    "resetdb": "psql -d ezlist-users -f ./database/create-tables.sql"
   },
   "repository": {
     "type": "git",
@@ -24,7 +25,7 @@
   },
   "homepage": "https://github.com/aidanbdh/ez-list#readme",
   "dependencies": {
-    "auth0-lock": "^10.12.3",
+    "auth0-lock": "^10.13.0",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "knex": "^0.12.7",

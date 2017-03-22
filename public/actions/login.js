@@ -1,27 +1,35 @@
-const lock = require('../utils/auth0.js')
+const { lock } = require('../utils/auth0.js')
 
-console.log(lock)
-
-const Login = token =>
-  dispatch => lock.getProfile(token, (err, profile) => {
-    err
-      ? dispatch({
-        type: 'loginError',
-        user: null,
-        profile: null
+const login = token =>
+  dispatch => {
+    lock.getProfile(token, (err, user) => {
+      err
+        ? dispatch({
+          type: 'loginError',
+          user: null
+        })
+        : dispatch({
+          type: 'updateProfile',
+          user
+        })
+      if (err) return
+      fetch('/login', {
+        headers: {
+          Accept: 'application/json',
+          'Content-type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify({ token })
       })
-      : dispatch({
-        type: 'updateProfile',
-        user: token,
-        profile
-      })
-  })
+    })
+  }
 
-const Logout = dispatch =>
-  dispatch({
-    type: 'updateProfile',
-    user: null,
-    profile: null
-  })
+const logout = () =>
+  dispatch => {
+    dispatch({
+      type: 'updateProfile',
+      user: null
+    })
+  }
 
-module.exports = { Login, Logout }
+module.exports = { login, logout }
