@@ -14,11 +14,16 @@ router.post('/login', (req, res) => {
   knex('users')
     .where({ clientid: req.body.token })
     .then(response => {
-      if (!response[0]) {
-        res.sendStatus(409)
+      if (response[0]) {
+        res.sendStatus(200)
+      } else {
+        knex('users')
+          .insert({ clientid: req.body.token })
+          .then(response => {
+            res.sendStatus(201)
+          })
       }
     })
-    .insert()
 })
 
 module.exports = router
