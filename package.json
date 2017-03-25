@@ -1,0 +1,58 @@
+{
+  "name": "ez-list",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "watch": "nodemon server/server.js",
+    "bundle": "browserify -t babelify public/index.js -o public/main.js",
+    "bundle:watch": "watchify -v -t babelify public/index.js -o public/main.js",
+    "test": "mocha",
+    "test:watch": "mocha -w -R min",
+    "coverage": "nyc --reporter=lcov npm test",
+    "resetdb": "psql -d ezlist-users -f ./database/create-tables.sql"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aidanbdh/ez-list.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aidanbdh/ez-list/issues"
+  },
+  "homepage": "https://github.com/aidanbdh/ez-list#readme",
+  "dependencies": {
+    "auth0-lock": "^10.13.0",
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "knex": "^0.12.7",
+    "pg": "^6.1.4",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.3",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-react-jsx": "^6.23.0",
+    "babelify": "^7.3.0",
+    "browserify": "^14.1.0",
+    "chai": "^3.5.0",
+    "eslint": "^3.17.1",
+    "eslint-config-standard": "^7.0.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^6.10.0",
+    "eslint-plugin-standard": "^2.1.1",
+    "htmlhint": "^0.9.13",
+    "mocha": "^3.2.0",
+    "nodemon": "^1.11.0",
+    "nyc": "^10.1.2",
+    "request": "^2.81.0",
+    "stylelint": "^7.9.0",
+    "stylelint-config-standard": "^16.0.0",
+    "watchify": "^3.9.0"
+  }
+}
