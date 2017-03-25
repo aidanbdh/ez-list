@@ -4,7 +4,7 @@ const Login = require('./views/login.js')
 
 const viewElements = view => {
   switch (view) {
-    case 'home':
+    case 'login':
       return <Login/>
     default:
       return <Login/>

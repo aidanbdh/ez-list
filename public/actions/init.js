@@ -1,5 +1,5 @@
 const init = {
-  view: 'home',
+  view: 'login',
   user: null
 }
 
