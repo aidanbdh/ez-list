@@ -27,4 +27,35 @@ router.post('/login', (req, res) => {
     })
 })
 
+router.get('/inventory', (req, res) => {
+  knex('users')
+    .where({ email: req.body.email })
+    .select('id')
+    .then(id => {
+      knex('inventory')
+        .where({ user: id[0] })
+        .then(items => {
+          res.status(200).send(items)
+        })
+    })
+})
+
+router.post('/inventory', (req, res) => {
+  knex('users')
+    .where({ email: req.body.email })
+    .select('id')
+    .then(id => {
+      knex('inventory')
+        .insert({
+          user: id,
+          name: req.body.name,
+          price: req.body.price,
+          location: req.body.location
+        })
+        .then(item => {
+          res.status(201).send(item)
+        })
+    })
+})
+
 module.exports = router
