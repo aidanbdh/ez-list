@@ -12,13 +12,14 @@ router.get('/', (_, res) => res.status(200).send('index.html'))
 
 router.post('/login', (req, res) => {
   knex('users')
-    .where({ clientid: req.body.token })
+    .where({ email: req.body.email })
     .then(response => {
       if (response[0]) {
         res.sendStatus(200)
-      } else {
+      }
+      else {
         knex('users')
-          .insert({ clientid: req.body.token })
+          .insert({ email: req.body.email })
           .then(response => {
             res.sendStatus(201)
           })

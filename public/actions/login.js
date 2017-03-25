@@ -19,7 +19,7 @@ const login = token =>
           'Content-type': 'application/json'
         },
         method: 'POST',
-        body: JSON.stringify({ token })
+        body: JSON.stringify({ email: user.email })
       })
     })
   }
