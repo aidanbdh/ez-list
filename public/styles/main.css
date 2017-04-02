@@ -3,7 +3,10 @@
 }
 
 .className {
+  min-height: 250px;
   width: 40vw;
   margin-right: 5vw;
   margin-left: 5vw;
+  border-style: solid;
+  border-radius: 15px;
 }

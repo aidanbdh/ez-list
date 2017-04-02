@@ -1,12 +1,11 @@
 const getInventory = email =>
   dispatch => {
-    fetch('/inventory', {
+    fetch('/inventory?email=' + email, {
       headers: {
         Accept: 'application/json',
         'Content-type': 'application/json'
       },
-      method: 'GET',
-      body: JSON.stringify({ email })
+      method: 'GET'
     })
       .then(items => {
         dispatch({
@@ -16,7 +15,7 @@ const getInventory = email =>
       })
   }
 
-const addInventory = (email, name, price = 0, location = null) =>
+const addInventory = (email, item) =>
   dispatch => {
     fetch('/inventory', {
       headers: {
@@ -24,7 +23,7 @@ const addInventory = (email, name, price = 0, location = null) =>
         'Content-type': 'application/json'
       },
       method: 'POST',
-      body: JSON.stringify({ email, name, price, location })
+      body: JSON.stringify(Object.assign(item, { email }))
     })
       .then(item => {
         dispatch({
@@ -34,4 +33,41 @@ const addInventory = (email, name, price = 0, location = null) =>
       })
   }
 
-module.exports = { getInventory, addInventory }
+const editInventory = (email, oldItem, item) =>
+  dispatch => {
+    fetch('/inventory', {
+      headers: {
+        Accept: 'application/json',
+        'Content-type': 'application/json'
+      },
+      method: 'PUT',
+      body: JSON.stringify({ email, oldItem, item })
+    })
+      .then(item => {
+        dispatch({
+          type: 'editInventory',
+          oldItem,
+          item
+        })
+      })
+  }
+
+const removeInventory = (email, item) =>
+  dispatch => {
+    fetch('/inventory', {
+      headers: {
+        Accept: 'application/json',
+        'Content-type': 'application/json'
+      },
+      method: 'DELETE',
+      body: JSON.stringify({ email, item })
+    })
+      .then(item => {
+        dispatch({
+          type: 'removeInventory',
+          item
+        })
+      })
+  }
+
+module.exports = { getInventory, addInventory, editInventory, removeInventory }

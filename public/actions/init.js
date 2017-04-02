@@ -1,6 +1,7 @@
 const init = {
   view: 'login',
-  user: null
+  user: null,
+  items: []
 }
 
 module.exports = init
