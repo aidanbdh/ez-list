@@ -1,3 +1,9 @@
 #login {
   text-align: right;
 }
+
+.className {
+  width: 40vw;
+  margin-right: 5vw;
+  margin-left: 5vw;
+}
