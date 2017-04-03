@@ -36,8 +36,9 @@ router.get('/inventory', (req, res) => {
     .select('id')
     .then(id => {
       knex('inventory')
-        .where({ user: id[0] })
+        .where({ user: id[0].id })
         .then(items => {
+          console.log(items)
           res.status(200).send(items)
         })
     })
@@ -49,8 +50,9 @@ router.post('/inventory', (req, res) => {
     .select('id')
     .then(id => {
       knex('inventory')
+        .returning('id')
         .insert({
-          user: id,
+          user: id[0].id,
           name: req.body.name,
           price: req.body.price,
           location: req.body.location
@@ -81,7 +83,7 @@ router.delete('/inventory', (req, res) => {
     .select('id')
     .then(id => {
       knex('inventory')
-        .where(Object.assign(req.body.item, id))
+        .where(Object.assign(req.body.item, { id: id[0].id }))
         .del()
         .then(() => {
           res.status().send(req.body.item)

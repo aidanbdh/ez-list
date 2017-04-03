@@ -1,13 +1,14 @@
 const React = require('react')
 const { connect } = require('react-redux')
-const { getInventory, addInventory, editInventory, deleteInventory } = require('../../../actions/inventory.js')
+const { getInventory, addInventory, deleteInventory } = require('../../../actions/inventory.js')
 const Item = require('./card.js')
 
-const Inventory = ({ items, email, get, add, edit, del }) => {
+const Inventory = ({ items, email, get, add, del }) => {
   get(email)
+  console.log(items)
   return <div>
     <div id="inventory-list" className="half-page">
-      { Item(email, items, edit, del) }
+      { Item(email, items, del) }
     </div>
     <div className="half-page">
 
@@ -19,7 +20,7 @@ const Inventory = ({ items, email, get, add, edit, del }) => {
 const mapDispatchToProps = dispatch => ({
   get: email => dispatch(getInventory(email)),
   add: (email, item) => dispatch(addInventory(email, item)),
-  edit: (email, oldItem, item) => dispatch(editInventory(email, oldItem, item)),
+  // edit: (email, oldItem, item) => dispatch(editInventory(email, oldItem, item)),
   del: (email, item) => dispatch(deleteInventory(email, item))
 })
 

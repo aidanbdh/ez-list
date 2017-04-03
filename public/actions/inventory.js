@@ -1,13 +1,14 @@
 const getInventory = email =>
   dispatch => {
     fetch('/inventory?email=' + email, {
-      headers: {
+      /* headers: {
         Accept: 'application/json',
         'Content-type': 'application/json'
-      },
+      }, */
       method: 'GET'
     })
       .then(items => {
+        console.log(items)
         dispatch({
           type: 'showInventory',
           items
