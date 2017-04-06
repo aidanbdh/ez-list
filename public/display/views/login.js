@@ -3,8 +3,10 @@ const { connect } = require('react-redux')
 const { show, authenticated } = require('../../utils/auth0.js')
 const { login, logout } = require('../../actions/login.js')
 
-const Login = ({ user, dispatchLogin, dispatchLogout }) => {
-  authenticated(res => dispatchLogin(res.idToken))
+const Login = ({ user, dispatchLogin, dispatchLogout, switchView }) => {
+  authenticated(res => {
+    dispatchLogin(res.idToken)
+  })
   const display =
     user
       ? {
@@ -24,8 +26,8 @@ const Login = ({ user, dispatchLogin, dispatchLogout }) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  dispatchLogin: id => {
-    dispatch(login(id))
+  dispatchLogin: (id, func) => {
+    dispatch(login(id, func))
   },
   dispatchLogout: () => {
     dispatch(logout())

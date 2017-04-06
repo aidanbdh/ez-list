@@ -21,6 +21,12 @@ const login = token =>
         method: 'POST',
         body: JSON.stringify({ email: user.email })
       })
+        .then(() => {
+          dispatch({
+            type: 'switchView',
+            view: 'home'
+          })
+        })
     })
   }
 

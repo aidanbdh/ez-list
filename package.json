@@ -2,7 +2,7 @@
   "name": "ez-list",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "start": "node server/server.js",
     "watch": "nodemon server/server.js",
@@ -11,7 +11,9 @@
     "test": "mocha",
     "test:watch": "mocha -w -R min",
     "coverage": "nyc --reporter=lcov npm test",
-    "resetdb": "psql -d ezlist-users -f ./database/create-tables.sql"
+    "migrate:make": "knex migrate:make",
+    "migrate": "knex migrate:latest",
+    "rollback": "knex migrate:rollback"
   },
   "repository": {
     "type": "git",
@@ -34,7 +36,9 @@
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.3",
     "redux": "^3.6.0",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "semantic-ui-css": "^2.2.9",
+    "semantic-ui-react": "^0.67.2"
   },
   "devDependencies": {
     "babel-plugin-transform-react-jsx": "^6.23.0",
