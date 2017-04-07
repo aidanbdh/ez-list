@@ -35,6 +35,7 @@ router.get('/inventory', (req, res) => {
     .where({ email: req.query.email })
     .select('id')
     .then(id => {
+      console.log(id)
       knex('inventory')
         .where({ user: id[0].id })
         .then(items => {
