@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
-  id        serial,
+  id     serial,
   email  varchar
 )
